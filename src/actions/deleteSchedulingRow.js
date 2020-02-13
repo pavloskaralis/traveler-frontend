@@ -6,7 +6,7 @@ export default function deleteItinerary(schedulingRowID) {
 
 
         const deleteRequest = async () => {
-            const result = await axios.delete(`http://traveler-backend.herokuapp.com/scheduling_rows/${schedulingRowID}`);  
+            const result = await axios.delete(`https://traveler-backend.herokuapp.com/scheduling_rows/${schedulingRowID}`);  
             const {data} = result;  
             if(!data.error){
                 dispatch(removeSchedulingRow(schedulingRowID));

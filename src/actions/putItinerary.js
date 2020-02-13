@@ -71,7 +71,7 @@ export default function putItinerary(location,departureDate,returnDate, itinerar
             dates:  JSON.stringify(dates),
         }
         const postRequest = async () => {
-            const result = await axios.put(`http://traveler-backend.herokuapp.com/itineraries/${itineraryID}`, updatedItinerary);
+            const result = await axios.put(`https://traveler-backend.herokuapp.com/itineraries/${itineraryID}`, updatedItinerary);
             const {data} = result;
             if (!data.error) {
                 dispatch(toggleError(''));

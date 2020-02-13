@@ -6,7 +6,7 @@ export default function putSchedulingRow(rowID, updatedSchedulingRow, index) {
     return dispatch => {
 
         const putRequest = async () => {
-            const result = await axios.put(`http://traveler-backend.herokuapp.com/scheduling_rows/${rowID}`, updatedSchedulingRow); 
+            const result = await axios.put(`https://traveler-backend.herokuapp.com/scheduling_rows/${rowID}`, updatedSchedulingRow); 
             const {data} = result;  
             if(!data.error){
                 dispatch(swapSchedulingRow(data, index))

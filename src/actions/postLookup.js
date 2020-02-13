@@ -12,7 +12,7 @@ export default function postLookup(itinerary_id, username, index) {
         }
     
         const postRequest = async () => {
-            const result = await axios.post('http://traveler-backend.herokuapp.com/lookups', lookup);  
+            const result = await axios.post('https://traveler-backend.herokuapp.com/lookups', lookup);  
             const {data} = result;  
             if(!data.error){
                 dispatch(selectItinerary(data));

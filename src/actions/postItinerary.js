@@ -73,7 +73,7 @@ export default function postItinerary(location,departureDate,returnDate,userID) 
         }
         const postRequest = async () => {
             dispatch(toggleError('Saving Itinerary...'));
-            const result = await axios.post(`http://traveler-backend.herokuapp.com/users/${userID}/itineraries`, newItinerary);
+            const result = await axios.post(`https://traveler-backend.herokuapp.com/users/${userID}/itineraries`, newItinerary);
             const {data} = result;
             if (!data.error) {
                 dispatch(toggleError(''));

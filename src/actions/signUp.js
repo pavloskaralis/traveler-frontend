@@ -14,7 +14,7 @@ export default function signUp(username, password) {
             password: password
         }
         const postRequest = async() => {
-            const result = await axios.post('http://traveler-backend.herokuapp.com/users', newUser);
+            const result = await axios.post('https://traveler-backend.herokuapp.com/users', newUser);
             const {data} = result;
             if (!data.error) {
                 localStorage.setItem("token", data.jwt)
