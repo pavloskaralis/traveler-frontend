@@ -1,0 +1,112 @@
+.row-container {
+    min-height: 60px;
+    width: 100%;
+    min-width: 768px;
+    display: flex;
+    border-bottom: 1px solid var(--gray);
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+
+textarea {
+    box-sizing: border-box;
+    min-height: 60px;
+    width: 16.67%;
+    background-color: white;
+    color: var(--black);
+    font-family: Verdana;
+    font-size: 16px;
+    padding: 19px 8px;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+.first {
+    font-weight: 600;
+}
+
+.schedule-container, .remove-container, .interest-container, .time-container {
+    box-sizing: border-box;
+    min-height: 60px;
+    width: 16.67%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.interest-container{ 
+   flex-direction: row;
+   justify-content: center; 
+}
+
+.schedule, .remove {
+    background-image: url('schedule.png');
+    background-size: 37px;
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.remove {
+    background-image: url('cancel.png');
+}
+
+.schedule:hover, .remove:hover{
+    background-color: var(--orange);
+}
+
+.interest {
+    font-family: Verdana;
+    color: var(--black);
+    align-self: center;
+    margin-right: 16px;
+    font-weight: 600;
+    cursor: default;
+    font-size: 18px;
+}
+
+.interest-button, .interest-button-subtract {
+    cursor: pointer;
+    align-self: center;
+    background-color: var(--black);
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background-image: url('add.png');
+    background-size: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.interest-button:hover, .interest-button-subtract:hover {
+    background-color: var(--blackHover);
+}
+
+.interest-button-subtract {
+    background-image: url('subtract.png');
+}
+
+.time {
+    padding: 4px; 
+    font-family: 'Verdana';
+    width: 125px;
+    height: 36px;
+    box-sizing: border-box;
+    font-size: 15px;
+    border: 0;
+    outline: 0;
+    cursor: text;
+    font-weight: 600;
+}
+
+
+input::-webkit-datetime-edit-hour-field:focus,
+input::-webkit-datetime-edit-minute-field:focus,
+input::-webkit-datetime-edit-ampm-field:focus {
+    background-color: var(--blue);
+}
