@@ -124,7 +124,7 @@ function Form({
     }
 
     // makes error message appear temporarily
-    if(toggleError !== '') setTimeout(()=> toggleError(''),1200);
+    if(toggleError !== '') setTimeout(()=> toggleError(''),1500);
 
     //inputs vary based on page and form type
     return (
