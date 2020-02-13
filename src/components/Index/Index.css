@@ -30,6 +30,7 @@
 }
 .empty {
     width: 100%;
+    max-width: 1200px;
     text-align: center;
     color: var(--gray);
     font-family: Verdana;
