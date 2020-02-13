@@ -92,12 +92,14 @@
     flex-direction: column;
     justify-content: center;
 }
-.empty {
+
+
+.show-empty {
     position: fixed;
-    max-width: 1200px;
     width: 100%;
     text-align: center;
     color: var(--gray);
     font-family: Verdana;
     font-weight: 600;
+    max-width: 1200px;
 }
