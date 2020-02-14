@@ -48,7 +48,7 @@
 #right, #left {
     background-image: url('right.png');
     background-size: 20px;
-    max-width: 40px;
+    min-width: 40px;
 }
 
 #left {
@@ -62,7 +62,9 @@
 
 .tools-select {
     min-height: 40px;
-    padding: 0 42px;
+    text-align-last:center;
+    padding-right: 20px; 
+    min-width:  0px; 
 }
 
 .tools-select:focus {
