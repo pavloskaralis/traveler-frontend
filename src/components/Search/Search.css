@@ -49,6 +49,7 @@
     background-image: url('right.png');
     background-size: 20px;
     min-width: 40px;
+    max-width: 40px; 
 }
 
 #left {
