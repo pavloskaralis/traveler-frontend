@@ -1,3 +1,3 @@
-export default function swapPlanningRow(planning_row, index) {
-    return { type: 'SWAP_PLANNING', planning_row, index }
+export default function swapPlanningRow(planning_row, id) {
+    return { type: 'SWAP_PLANNING', planning_row, id }
 }

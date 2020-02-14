@@ -7,7 +7,7 @@ import toggleLogin from './toggleLogin.js'
 export default function userSetup() {
     return dispatch => {
         const getRequest = async() => {
-            const result = await axios.get('https://traveler-backend.herokuapp.com/auto_login', {
+            const result = await axios.get('http://localhost:3001/auto_login', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

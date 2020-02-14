@@ -32,6 +32,7 @@ function Show({dropdown, toggleDropdown, form, getItinerary, postPlanningRow, po
     useEffect(()=> {
         getItinerary(userID);
     },[])
+    if(itinerary) console.log('itinerary', itinerary.scheduling_rows)
     // auto scroll to bottom on row creation; passed to add-row onClick
     const autoScroll = () => setTimeout(()=>document.querySelector('.body').scrollTop = document.querySelector('.body').scrollHeight, 100);
     return (
@@ -50,9 +51,9 @@ function Show({dropdown, toggleDropdown, form, getItinerary, postPlanningRow, po
                 </div>
                 <div className='body'>
                     {/* render planning rows */}
-                    {itinerary.planning_rows && table === 'Planning' && itinerary.planning_rows.sort((a,b) => a.id - b.id).map((planningRow,index) => {
+                    {itinerary.planning_rows && table === 'Planning' && itinerary.planning_rows.sort((a,b) => a.id - b.id).map(planningRow => {
                         return (
-                            <Row rowType='planning' row={planningRow}  rowIndex={index} key={planningRow.id}/>
+                            <Row rowType='planning' row={planningRow} key={planningRow.id}/>
                         )
                     })}
 
@@ -64,10 +65,10 @@ function Show({dropdown, toggleDropdown, form, getItinerary, postPlanningRow, po
                     }
                     
                     {/* render scheduling rows */}
-                    {itinerary.scheduling_rows && (table !== 'Planning') && itinerary.scheduling_rows.sort((a,b)=> (parseFloat(a.time.replace(':','')) || 2500)  - (parseFloat(b.time.replace(':','')) || 2500)).map((schedulingRow, index) => {
+                    {itinerary.scheduling_rows && (table !== 'Planning') && itinerary.scheduling_rows.sort((a,b)=> (parseFloat(a.time.replace(':','')) || 2500)  - (parseFloat(b.time.replace(':','')) || 2500)).map(schedulingRow => {
                         return (
                             // only render matching dates
-                            (table === schedulingRow.date) && <Row rowType='scheduling' row={schedulingRow}  rowIndex={index} key={schedulingRow.id}/>
+                            (table === schedulingRow.date) && <Row rowType='scheduling' row={schedulingRow} key={schedulingRow.id}/>
                         )
                     })}
                 </div>
