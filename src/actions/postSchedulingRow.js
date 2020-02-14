@@ -13,7 +13,7 @@ export default function postSchedulingRow(itineraryID, date, time = '', planning
         delete schedulingRow.updated_at;
 
         const postRequest = async () => {
-            const result = await axios.post(`http://localhost:3001/itineraries/${itineraryID}/scheduling_rows`, schedulingRow);
+            const result = await axios.post(`https://traveler-backend.herokuapp.com/itineraries/${itineraryID}/scheduling_rows`, schedulingRow);
             const {data} = result;
             if (!data.error) {
                 dispatch(addSchedulingRow(data.scheduling_row));
