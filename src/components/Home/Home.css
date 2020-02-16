@@ -141,6 +141,31 @@
     background-color: var(--blackHover);
 }
 
+@media (min-width: 993px)  and (max-width: 1200px) {
+
+
+
+
+    .slogan-container h1 {
+        height: 144px;
+        min-width: 257px;
+        font-size: 36px;
+    }
+    
+    .home-wrap h2 {
+        font-size: 24px; 
+    }
+
+    .signup, .login {
+        width: 168px;
+        height: 72px;
+        font-size: 24px;
+    }
+ 
+    
+    
+}
+
 @media (max-width: 992px) {
     .image-overlay, .color-overlay, .gradient-overlay {
         min-height: 800px; 
