@@ -33,7 +33,7 @@ function Home({toggleForm, form, dropdown, toggleDropdown}) {
                                 <h1 className="relax">& Relax.</h1>
                             </div>
                         </div>
-                        <h2>Have a big trip around the corner? <br/>
+                        <h2>Have a big trip around the corner? &nbsp; <br/>
                         Invite your friends & plan together.</h2>
                     </div>
                     <div className="home-wrap mobile-home-wrap">
