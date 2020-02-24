@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App/App'
+import App from './components/App.js'
 import {Router} from 'react-router-dom'
 import history from './history.js'
 import { createStore, applyMiddleware } from 'redux'

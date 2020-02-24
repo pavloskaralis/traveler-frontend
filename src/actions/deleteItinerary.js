@@ -9,7 +9,7 @@ export default function deleteItinerary(itinerary, userID) {
         
         
         const removeRequests = async () => {
-            const result = await axios.delete(`https://traveler-backend.herokuapp.com/lookups/${userID}/${itinerary.id}`); 
+            const result = await axios.delete(`http://localhost:3001/lookups/${userID}/${itinerary.id}`); 
             const {data} = result;     
             if(!data.error){
                 history.push('/');
@@ -23,7 +23,7 @@ export default function deleteItinerary(itinerary, userID) {
 
 
         const deleteRequest = async () => {
-            const result = await axios.delete(`https://traveler-backend.herokuapp.com/itineraries/${itinerary.id}`);  
+            const result = await axios.delete(`http://localhost:3001/itineraries/${itinerary.id}`);  
             const {data} = result;  
             if(!data.error){
                 history.push('/');

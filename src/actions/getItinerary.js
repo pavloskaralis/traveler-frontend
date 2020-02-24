@@ -9,7 +9,7 @@ export default function getItinerary(userID) {
         const itineraryID = splitUrl[splitUrl.length - 1];
 
         const getRequest = async() => {
-            const result = await axios.get(`https://traveler-backend.herokuapp.com/users/${userIDParam}/itineraries/${itineraryID}`) 
+            const result = await axios.get(`http://localhost:3001/users/${userIDParam}/itineraries/${itineraryID}`) 
             const {data} = result;  
             if(!data.error){
                 //makes url prettier 

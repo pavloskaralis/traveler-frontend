@@ -4,7 +4,7 @@ import toggleForm from './toggleForm.js'
 import swapItinerary from './swapItinerary.js'
 import selectItinerary from './selectItinerary.js';
 
-export default function putItinerary(location,departureDate,returnDate, itineraryID, index) {
+export default function putItinerary(location,departureDate,returnDate, itineraryID, index, shared) {
     return dispatch => {
         //check date format is valid
         const regex = /(20)[2-9]\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/i;
@@ -68,17 +68,18 @@ export default function putItinerary(location,departureDate,returnDate, itinerar
         //post request
         const updatedItinerary = {
             location: location,
-            dates:  JSON.stringify(dates),
+            dates:  JSON.stringify(dates)
         }
         const postRequest = async () => {
-            const result = await axios.put(`https://traveler-backend.herokuapp.com/itineraries/${itineraryID}`, updatedItinerary);
+            const result = await axios.put(`http://localhost:3001/itineraries/${itineraryID}`, updatedItinerary);
             const {data} = result;
             if (!data.error) {
                 dispatch(toggleError(''));
                 dispatch(toggleForm(''));
                 dispatch(selectItinerary(''));
                 const newDates = JSON.parse(updatedItinerary.dates)
-                dispatch(swapItinerary({...updatedItinerary, dates: newDates, id: itineraryID}, index))
+                console.log(data.shared)
+                dispatch(swapItinerary({...updatedItinerary, dates: newDates, id: itineraryID, shared: shared}, index))
             } else {
                 dispatch(toggleError('Failed To Update'));
             }

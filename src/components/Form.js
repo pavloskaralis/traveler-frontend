@@ -1,18 +1,167 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import toggleForm from '../../actions/toggleForm.js'
-import signUp from '../../actions/signUp.js'
-import logIn from '../../actions/logIn.js'
-import toggleError from '../../actions/toggleError.js'
-import postItinerary from '../../actions/postItinerary.js'
-import selectItinerary from '../../actions/selectItinerary.js'
-import selectPlanningRow from '../../actions/selectPlanningRow.js'
-import putItinerary from '../../actions/putItinerary.js'
-import deleteItinerary from '../../actions/deleteItinerary.js'
-import postLookup from '../../actions/postLookup.js';
-import postSchedulingRow from '../../actions/postSchedulingRow.js';
-import './Form.css'
+import styled from 'styled-components'
+import selectIcon from '../images/select.png'
+import toggleForm from '../actions/toggleForm.js'
+import signUp from '../actions/signUp.js'
+import logIn from '../actions/logIn.js'
+import toggleError from '../actions/toggleError.js'
+import postItinerary from '../actions/postItinerary.js'
+import selectItinerary from '../actions/selectItinerary.js'
+import selectPlanningRow from '../actions/selectPlanningRow.js'
+import putItinerary from '../actions/putItinerary.js'
+import deleteItinerary from '../actions/deleteItinerary.js'
+import postLookup from '../actions/postLookup.js';
+import postSchedulingRow from '../actions/postSchedulingRow.js';
 
+const Wrapper = styled.div`
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25,25,25,.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 3;
+
+    & form {
+        width: 400px;
+        margin: 0 auto; 
+        background-color: ${props => props.theme.black};
+        border-radius: 15px; 
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+    }
+
+    & legend {
+        text-transform: capitalize;
+        color: ${props => props.theme.orange}; 
+        text-align: center;
+        margin: 24px auto; 
+        font-family: 'Verdana';
+        cursor: default;
+        font-weight: 600;
+        font-size: 17.5px;
+        padding: 0;
+        width: 100%;
+    }
+
+    & select {
+        border: 2px solid ${props => props.theme.opaque}; 
+        padding: 4px; 
+        font-family: 'Verdana';
+        width: 175px;
+        height: 36px;
+        box-sizing: border-box;
+        font-size: 16px;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        background-position: 95% 60%;
+        background-size: 20px;
+        background-repeat: no-repeat;
+        background-image: url(${selectIcon});
+        cursor: pointer;
+        
+        &:focus {
+            border: 2px solid ${props => props.theme.blue};
+            outline: none;
+        }
+    }
+
+    input::-webkit-datetime-edit-hour-field:focus,
+    input::-webkit-datetime-edit-minute-field:focus,
+    input::-webkit-datetime-edit-ampm-field:focus,
+    input::-webkit-datetime-edit-day-field:focus,
+    input::-webkit-datetime-edit-month-field:focus,
+    input::-webkit-datetime-edit-year-field:focus {
+        background-color: ${props => props.theme.blue};
+    }
+`;
+
+const InputContainer = styled.div`
+    display: flex; 
+    justify-content: space-between;
+    padding: 0 64px;
+    margin-bottom: 16px;
+
+    & label {
+        color: white;
+        font-family: 'Verdana';
+        display: flex;
+        flex-direction: column;
+        justify-content: ${props => props.all ? 'flex-start' : 'center'};
+        text-align: ${props => props.remove ? 'center' : ''};
+        width: ${props => props.remove ? '220px' : ''};
+        margin: ${props => props.remove ? '0 auto' : ''};
+    }
+
+    & input {
+        border: 2px solid ${props => props.theme.opaque}; 
+        padding: 4px; 
+        font-family: 'Verdana';
+        width: 175px;
+        height: 36px;
+        box-sizing: border-box;
+        font-size: 16px;
+
+        &:focus {
+            border: 2px solid ${props => props.theme.blue};
+            outline: none;
+        }
+    }
+
+    & input[type="date"], input[type="time"] {
+        cursor: text;
+    }
+`;
+
+const ButtonContainer = styled.div`
+    margin-bottom: 24px; 
+    display: flex;
+    justify-content: space-evenly;
+    & input {
+        display: none;
+    }
+`;
+
+const UsernameContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    max-width: 270px;
+    flex-wrap: wrap;
+    max-height: 120px;
+    justify-content: space-between;
+    font-family: Verdana;
+    color: white;
+    font-weight: 600;
+    width: 175px;
+
+    & div {
+        margin-bottom: 4px;
+        margin: 4px;
+    }
+`;
+
+const Button = styled.div`
+    border-radius: 8px; 
+    width: 80px; 
+    text-align: center;
+    font-family: 'Verdana';
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 8px;
+    color: ${props => props.cancel ? 'white' : props.theme.black};
+    background-color: ${props => props.cancel ? props.theme.gray : props.theme.orange};
+    &:hover {
+        background-color: ${props => props.cancel ? props.theme.grayHover : props.theme.orangeHover}; 
+    }
+`;
 
 const mapStateToProps = state => {
     return {
@@ -40,11 +189,11 @@ const mapDispatchToProps = {
 }
 
 //form reused for home, index, and show pages
-function Form({
+let Form = ({
     form, error, toggleForm, signUp, logIn, page, userID, itinerary, toggleError, 
     postSchedulingRow, postItinerary, selectItinerary, selectPlanningRow, putItinerary, 
     deleteItinerary, postLookup, index, planningRow
-}) {
+}) => {
     //define variables for ref attributes
     let username,
     password,
@@ -54,7 +203,6 @@ function Form({
     schedulingDate,
     schedulingTime,
     addUser; 
-    const allInputs = [username,password,location,departureDate,returnDate,addUser,schedulingDate,schedulingTime];
 
     const submit = e => {
         
@@ -72,6 +220,8 @@ function Form({
             case 'share': if(!addUser.value) return
                 break; 
             case 'schedule': if(!schedulingDate.value || !schedulingTime.value) return
+                break;
+            default: console.log();
         }
         //prevent sharing itinerary with more than 8 users
         if(form === 'share' && itinerary.usernames.length === 8) return toggleError('8 User Limit');
@@ -84,9 +234,9 @@ function Form({
                 break;
             case 'log in': logIn(username.value,password.value);
                 break;
-            case 'new': postItinerary(location.value,departureDate.value,returnDate.value,userID)
+            case 'new': postItinerary(location.value,departureDate.value,returnDate.value,userID);
                 break;
-            case 'update': {putItinerary(location.value,departureDate.value,returnDate.value,itinerary.id,itinerary.index)}
+            case 'update': putItinerary(location.value,departureDate.value,returnDate.value,itinerary.id,itinerary.index, itinerary.shared);
                 break;
             case 'remove': deleteItinerary(itinerary, userID);
                 break;
@@ -94,6 +244,7 @@ function Form({
                 break;
             case 'schedule': postSchedulingRow(itinerary.id, schedulingDate.value, schedulingTime.value , planningRow );
                 break;
+            default: console.log();
         }
         //reset values
         document.querySelectorAll('input').forEach(input => input.value = '');
@@ -110,6 +261,8 @@ function Form({
         case 'share': legend = 'share itinerary';
             break;
         case 'schedule': legend = 'schedule activity';
+            break;
+        default: console.log();
     }
     //refactor departure and return date for update form default values
     let firstDay;
@@ -129,7 +282,7 @@ function Form({
     //inputs vary based on page and form type
     return (
         // close dropdown on off focus
-        <div className="form-container" onClick={()=>{
+        <Wrapper onClick={()=>{
             if(form && page === 'index'){toggleForm('');selectItinerary('')}
             else if(form && page === 'show'){toggleForm('');selectPlanningRow('')}
             else if(form && page === 'home')toggleForm('');
@@ -139,38 +292,38 @@ function Form({
                 {/* home page has login and signup form */}
                 {page === 'home' &&
                     <>
-                        <div className="input-container">
+                        <InputContainer>
                             <label>Username:</label>
                             <input type="text" ref={node => username = node} autoFocus/>
-                        </div>
-                        <div className="input-container">
+                        </InputContainer>
+                        <InputContainer>
                             <label>Password:</label>
                             <input type={form==="log in" ? "password" : "text"} ref={node => password = node}/>
-                        </div>
+                        </InputContainer>
                     </>
                 }
                 {/* index page has itinerary create and update form */}
                 {page === 'index' &&
                     <>
-                        <div className="input-container">
+                        <InputContainer>
                             <label>Location:</label>
                             <input type="text" ref={node => location = node} defaultValue={form === 'update' ? itinerary.location : ''} autoFocus/>
-                        </div>
-                        <div className="input-container">
+                        </InputContainer>
+                        <InputContainer>
                             <label>Departure:</label>
                             <input type="date" ref={node => departureDate = node} defaultValue={firstDay}/>
-                        </div>
-                        <div className="input-container">
+                        </InputContainer>
+                        <InputContainer>
                             <label>Return:</label>
                             <input type="date" ref={node => returnDate = node} defaultValue={lastDay}/>
-                        </div>
+                        </InputContainer>
                     </>
                 }
                 {page === 'show' &&
                     <>  
                         {form === 'schedule' &&
                             <>
-                                <div className="input-container">
+                                <InputContainer>
                                     <label>Date:</label>
                                     <select ref={node => schedulingDate = node} autoFocus >
                                         {itinerary.dates.slice(1).map(date => {
@@ -179,48 +332,48 @@ function Form({
                                             )
                                         })}
                                     </select>
-                                </div>
-                                 <div className="input-container">
+                                </InputContainer>
+                                 <InputContainer>
                                     <label>Time:</label>
                                     <input type="time" ref={node => schedulingTime = node}/>
-                                </div>
+                                </InputContainer>
                             </>
                         }
                         {form === 'remove' &&
-                            <div className='input-container'>
-                                <label className='remove-label'>Are you sure you want to remove this itinerary?</label>
-                            </div>
+                            <InputContainer remove>
+                                <label>Are you sure you want to remove this itinerary?</label>
+                            </InputContainer>
                         }
                         {form === 'share' && 
                             <>
-                                 <div className="input-container">
-                                    <label className='all-users'>All Users:</label>
-                                    <div className="username-container">
+                                 <InputContainer all>
+                                    <label>All Users:</label>
+                                    <UsernameContainer>
                                         {itinerary.usernames && itinerary.usernames.map(username =>{
                                             return (
-                                                <div className='username' key={username}>{username}</div>
+                                                <div key={username}>{username}</div>
                                             )
                                         })}
-                                    </div>
-                                </div>
-                                <div className="input-container">
+                                    </UsernameContainer>
+                                </InputContainer>
+                                <InputContainer>
                                     <label>Add User:</label>
                                     <input type="text" ref={node => addUser = node} autoFocus/>
-                                </div>
+                                </InputContainer>
                             </>
                         }
                     </>
                 }
-                <div className="button-container">
-                    <div onClick={page === 'index' ? ()=> {toggleForm(''); selectItinerary('')} : ()=> {toggleForm(''); selectPlanningRow('')}} className="cancel">
+                <ButtonContainer>
+                    <Button cancel onClick={page === 'index' ? ()=> {toggleForm(''); selectItinerary('')} : ()=> {toggleForm(''); selectPlanningRow('')}}>
                         {form === 'share' ? 'Close' : 'Cancel'}
-                    </div>
-                    <div type="submit" className="submit" onClick={ submit }>{form === 'remove' ? 'Confirm' : 'Submit'}</div>
+                    </Button>
+                    <Button type="submit" onClick={ submit }>{form === 'remove' ? 'Confirm' : 'Submit'}</Button>
                     {/* required for enter key to work on home page for unknown reason */}
-                    <input className="invisible" type="submit"/>
-                </div>
+                    <input type="submit"/>
+                </ButtonContainer>
             </form>
-        </div>
+        </Wrapper>
     )
 }
 
