@@ -160,8 +160,7 @@ let Row = ({rowType, row, userID, toggleForm, selectPlanningRow, putPlanningRow,
     
     useEffect(()=> {
         // put request row on dismount if changed
-     
-        return (()=> {
+   
             if(row.interest){
                 const updatedPlanning = {
                     activity: activity,
@@ -170,8 +169,6 @@ let Row = ({rowType, row, userID, toggleForm, selectPlanningRow, putPlanningRow,
                     website: website,
                     interest: JSON.stringify(interest)
                 }
-
-                console.log(updatedPlanning, row)
                 if (row.activity !== updatedPlanning.activity || row.category !== updatedPlanning.category ||
                     row.address !== updatedPlanning.address || row.website!== updatedPlanning.website || 
                     row.interest !== updatedPlanning.interest 
@@ -182,14 +179,14 @@ let Row = ({rowType, row, userID, toggleForm, selectPlanningRow, putPlanningRow,
                     category: type,
                     address: address,
                     website: website,
-                    time: document.querySelectorAll(`#time${row.id}`)[0].value
+                    time: time
                 }
                 if(row.activity !== updatedScheduling.activity || row.category !== updatedScheduling.category ||
                     row.address !== updatedScheduling.address || row.website!== updatedScheduling.website ||
                     row.time !== updatedScheduling.time 
                 ) putSchedulingRow(row.id,updatedScheduling,row.id);
             }
-        })
+     
     },[time, activity, type, website, address, interest])
 
     return (
