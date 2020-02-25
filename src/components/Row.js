@@ -169,9 +169,9 @@ let Row = ({rowType, row, userID, toggleForm, selectPlanningRow, putPlanningRow,
                     website: website,
                     interest: JSON.stringify(interest)
                 }
-                if (row.activity !== updatedPlanning.activity || row.category !== updatedPlanning.category ||
+                if ( row.activity !== updatedPlanning.activity || row.category !== updatedPlanning.category ||
                     row.address !== updatedPlanning.address || row.website!== updatedPlanning.website || 
-                    row.interest !== updatedPlanning.interest 
+                    JSON.stringify(row.interest) !== updatedPlanning.interest
                 )  putPlanningRow(row.id,updatedPlanning,row.id);
             }else{
                 const updatedScheduling = {
@@ -181,9 +181,9 @@ let Row = ({rowType, row, userID, toggleForm, selectPlanningRow, putPlanningRow,
                     website: website,
                     time: time
                 }
-                if(row.activity !== updatedScheduling.activity || row.category !== updatedScheduling.category ||
+                if( row.activity !== updatedScheduling.activity || row.category !== updatedScheduling.category ||
                     row.address !== updatedScheduling.address || row.website!== updatedScheduling.website ||
-                    row.time !== updatedScheduling.time 
+                    row.time !== updatedScheduling.time
                 ) putSchedulingRow(row.id,updatedScheduling,row.id);
             }
      
