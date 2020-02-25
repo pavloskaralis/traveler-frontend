@@ -27,6 +27,14 @@ const Container = styled.div`
     overflow-y: auto;
     box-sizing: border-box;
     box-shadow: 0 0 4px 0 rgba(0,0,0,.5);
+    ::-webkit-scrollbar {
+    width: 8px;    
+    height: 8px;
+    background-color: ${props => props.theme.gray};
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: ${props => props.theme.black};   
+    }
 `;
 
 const Empty = styled.div`

@@ -29,6 +29,14 @@ const Table = styled.div`
     display: table-row-group;
     box-sizing: border-box;
     box-shadow: 0 0 4px 0 rgba(0,0,0,.5);
+    ::-webkit-scrollbar {
+        width: 8px;    
+        height: 8px;
+        background-color: ${props => props.theme.gray};
+      }
+      ::-webkit-scrollbar-thumb {
+          background-color: ${props => props.theme.black};   
+      }
 `;
 
 const Head = styled.div`
@@ -50,6 +58,15 @@ const Body = styled.div`
     height: calc(100% - 120px);
     overflow-y: auto;
     overflow-x: hidden;
+
+    ::-webkit-scrollbar {
+        width: 8px;    
+        height: 8px;
+        background-color: ${props => props.theme.gray};
+      }
+      ::-webkit-scrollbar-thumb {
+          background-color: ${props => props.theme.black};   
+      }
 `;
 
 const TH = styled.div`
@@ -132,7 +149,7 @@ let Show = ({dropdown, toggleDropdown, form, getItinerary, postPlanningRow, post
   
     if(itinerary) console.log('itinerary', itinerary.scheduling_rows)
     // auto scroll to bottom on row creation; passed to add-row onClick
-    const autoScroll = () => setTimeout(()=>document.querySelector('.body').scrollTop = document.querySelector('.body').scrollHeight, 100);
+    const autoScroll = () => setTimeout(()=>document.querySelector('#body').scrollTop = document.querySelector('#body').scrollHeight, 100);
     return (
         // dropdown off focus click
         <Wrapper onClick={()=> {if(dropdown)toggleDropdown(false)}}>
@@ -147,7 +164,7 @@ let Show = ({dropdown, toggleDropdown, form, getItinerary, postPlanningRow, post
                     <TH>{table === 'Planning' ? 'Interest' : 'Website'}</TH>
                     <TH>{table === 'Planning' ? 'Schedule' : 'Remove'}</TH>
                 </Head>
-                <Body>
+                <Body id='body'>
                     {/* render planning rows */}
                     {itinerary.planning_rows && table === 'Planning' && itinerary.planning_rows.sort((a,b) => a.id - b.id).map(planningRow => {
                         return (
@@ -171,7 +188,7 @@ let Show = ({dropdown, toggleDropdown, form, getItinerary, postPlanningRow, post
                     })}
                 </Body>
                 {/* create scheduling or planning row based on table */}
-                <AddRow onClick={table !== 'Planning' ? ()=> postSchedulingRow(itinerary.id, table) : ()=> {postPlanningRow(itinerary.id); autoScroll();}}/>
+                <AddRow onClick={table !== 'Planning' ? ()=> {postSchedulingRow(itinerary.id, table); ; autoScroll();} : ()=> {postPlanningRow(itinerary.id); autoScroll();}}/>
             </Table>
         </Wrapper>
     )
