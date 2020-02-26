@@ -24,7 +24,7 @@ const ImageOverlay = styled.div`
         min-height: 800px; 
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
         min-height: 600px; 
     }
 `;
@@ -55,7 +55,7 @@ const ColorOverlay = styled.div`
         );
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
         min-height: 600px; 
     }
 `;
@@ -77,7 +77,7 @@ const GradientOverlay = styled.div`
         min-height: 800px; 
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 499px) {
         min-height: 600px; 
     }
 `;
@@ -109,8 +109,8 @@ const HomeWrap = styled.div`
         justify-content: ${props => props.mobile ? 'flex-start' : 'space-evenly'};
     }
 
-    @media (max-width: 500px) {
-        min-height: ${props => props.mobile ? '100px' : '400px'};
+    @media (max-width: 499px) {
+        min-height: ${props => props.mobile ? '100px' : '300px'};
     }
 
     & h2 {

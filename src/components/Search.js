@@ -28,7 +28,7 @@ const Wrapper = styled.form`
     box-sizing: border-box;
 
     @media (max-width: 499px) {
-      max-width: 150px; 
+      max-width: 140px; 
     }
   }
 
