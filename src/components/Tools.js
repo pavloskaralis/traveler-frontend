@@ -27,13 +27,24 @@ const ButtonContainer = styled.div`
     justify-content: space-evenly;
     box-sizing: border-box;
     padding: ${props => props.page === 'show' ? '0 16px' : '0'};
+
+    @media (max-width: 500px) {
+        min-width: 300px;
+    }
 `;
 
 const ButtonGroup = styled.div`
     display: flex;
-    width: 180px;
+    max-width: 180px; 
+    width: 25%;
+    min-width: 173px;
     justify-content: space-between;
     box-sizing: border-box;
+
+    @media (max-width: 499px) {
+        max-width: 132px; 
+        min-width: 128px;
+    }
 `;
 //tools conditionally render based on index or show page
 let Tools = ({page}) => {
@@ -50,7 +61,7 @@ let Tools = ({page}) => {
                         <Button type='return' size='30px' image={returnIcon}/>
                         <Search page={'show'}/>
                         <ButtonGroup>
-                            <Button type='share' size='35px' image={shareIcon} margin/>
+                            <Button type='share' size='35px' image={shareIcon}/>
                             <Button type='remove' size='22px' image={removeIcon}/>
                         </ButtonGroup>
                     </>

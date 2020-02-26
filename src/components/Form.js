@@ -31,6 +31,10 @@ const Wrapper = styled.div`
         background-color: ${props => props.theme.black};
         border-radius: 15px; 
         box-shadow: 0 5px 10px 0 rgba(0,0,0,.5);
+
+        @media (max-width: 499px) {
+            max-width: 300px; 
+        }
     }
 
     & legend {
@@ -112,6 +116,10 @@ const InputContainer = styled.div`
 
     & input[type="date"], input[type="time"] {
         cursor: text;
+    }
+
+    @media (max-width: 499px) {
+        padding: 16px; 
     }
 `;
 

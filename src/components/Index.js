@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
     margin:0 auto; 
     max-width: 992px;
-    min-width: 500px; 
+    min-width: 300px; 
     height: calc(100% - 120px); 
     width: 100%; 
     background-color: white; 

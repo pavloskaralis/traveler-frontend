@@ -15,6 +15,7 @@ const Wrapper = styled.form`
   box-sizing: border-box;
   max-width: ${props => props.page === 'show' ? '400px' : ''};
   margin: ${props => props.page === 'show' ? '0 8px' : ''};
+  background-color: white;
 
   & input, select {
     font-size: 16px;
@@ -25,6 +26,10 @@ const Wrapper = styled.form`
     border: none;
     outline: none;
     box-sizing: border-box;
+
+    @media (max-width: 499px) {
+      max-width: 150px; 
+    }
   }
 
   & select {
@@ -33,11 +38,16 @@ const Wrapper = styled.form`
     padding-right: 20px; 
     min-width:  0px; 
     cursor: pointer; 
+
+    @-moz-document url-prefix() {
+      padding: 0;
+    }
   }
 
   &:hover {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.5);
   }
+
 `;
 
 const Submit = styled.div`

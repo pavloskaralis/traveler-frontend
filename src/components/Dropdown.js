@@ -30,6 +30,9 @@ const Menu = styled.div`
         font-family: Verdana;
         border-top: 1px solid ${props => props.theme.gray};
         cursor: pointer;
+        @media (max-width: 499px) {
+            font-size: 12px; 
+        }
     }
 
     & a:hover {

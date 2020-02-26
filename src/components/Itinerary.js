@@ -72,6 +72,7 @@ const Edit = styled(Container)`
 const Wrapper = styled.a`
     text-decoration-line: none;
     width: 100%;
+    min-width: 500px;
     padding-left: 8%;
     min-height: 90px; 
     display: flex;

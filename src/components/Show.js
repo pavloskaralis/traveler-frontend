@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 const Table = styled.div`
     margin:0 auto; 
     max-width: 1200px;
-    min-width: 500px; 
+    min-width: 300px; 
     width: 100%; 
     overflow: auto;
     height: calc(100% - 120px); 
@@ -86,7 +86,6 @@ const TH = styled.div`
 const AddRow = styled.div`
     position: fixed;
     align-self: auto;
-    min-width: 500px;
     max-width: 1200px;
     width: 100%;
     min-height: 60px; 

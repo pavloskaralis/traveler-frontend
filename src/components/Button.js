@@ -20,9 +20,13 @@ const ButtonStyle = styled.div`
     cursor: pointer;
     background-image: ${props => `url(${props.image})`};
     background-size: ${props => props.size};
-    margin-right: ${props => props.margin ? '8px' : '0'};
     &:hover {
         background-color: ${props => props.theme.blackHover};
+    }
+
+    @media (max-width: 499px) {
+        min-width: 60px;
+        max-width: 60px;
     }
 `;
 
@@ -33,11 +37,11 @@ const mapDispatchToProps = {
 }
 
 
-let Button = ({type, toggleForm, selectItinerary, image, size, margin}) => {
+let Button = ({type, toggleForm, selectItinerary, image, size}) => {
      // all buttons except back toggle form
     const onClick = type === 'return' ? ()=> {history.push('/');selectItinerary('')} : ()=> toggleForm(type);
     return (
-        <ButtonStyle onClick={ onClick } image={image} size={size} margin={margin}></ButtonStyle>
+        <ButtonStyle onClick={ onClick } image={image} size={size}></ButtonStyle>
     )
 }
 
