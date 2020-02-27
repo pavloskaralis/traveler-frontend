@@ -35,7 +35,7 @@ const Menu = styled.div`
         }
     }
 
-    & a:hover {
+    & a:hover, div:hover {
         color: ${props => props.theme.gray};
     }
     
