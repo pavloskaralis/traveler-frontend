@@ -8,7 +8,6 @@ export default function postItinerary(location,departureDate,returnDate,userID) 
         //check date format is valid
         const regex = /(20)[2-9]\d-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/i;
         if(!departureDate.match(regex) || !returnDate.match(regex)){
-            console.log('invalde date format')
             return dispatch(toggleError('Invalid Date Format'));
         } 
         //find today's date
