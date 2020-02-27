@@ -319,11 +319,11 @@ let Form = ({
                         </InputContainer>
                         <InputContainer>
                             <label>Departure:</label>
-                            <input type="date" ref={node => departureDate = node} defaultValue={firstDay}/>
+                            <input type="date" ref={node => departureDate = node} defaultValue={firstDay} placeholder='yyyy-mm-dd'/>
                         </InputContainer>
                         <InputContainer>
                             <label>Return:</label>
-                            <input type="date" ref={node => returnDate = node} defaultValue={lastDay}/>
+                            <input type="date" ref={node => returnDate = node} defaultValue={lastDay} placeholder='yyyy-mm-dd'/>
                         </InputContainer>
                     </>
                 }
@@ -343,7 +343,7 @@ let Form = ({
                                 </InputContainer>
                                  <InputContainer>
                                     <label>Time:</label>
-                                    <input type="time" ref={node => schedulingTime = node}/>
+                                    <input type="time" ref={node => schedulingTime = node} placeholder='hh:mm'/>
                                 </InputContainer>
                             </>
                         }

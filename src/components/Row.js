@@ -210,7 +210,7 @@ let Row = ({rowType, row, userID, toggleForm, selectPlanningRow, putPlanningRow,
             {rowType === 'scheduling' && 
                 <Wrapper id={row.id}>
                     <TDContainer>
-                        <Time type='time' onChange={handleInput} defaultValue={row.time} id={`time${row.id}`}/>
+                        <Time type='time' onChange={handleInput} defaultValue={row.time} id={`time${row.id}`} placeholder="hh:mm"/>
                     </TDContainer>
                     <TextArea onChange={handleInput} value={activity} id={`activity${row.id}`}/>
                     <TextArea onChange={handleInput} value={type} id={`type${row.id}`}/>
