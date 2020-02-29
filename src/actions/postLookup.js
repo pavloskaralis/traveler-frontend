@@ -25,6 +25,7 @@ export default function postLookup(itinerary_id, username, index) {
                 }
                 dispatch(toggleError(''));
                 dispatch(swapItinerary(updatedItinerary, index));
+                if(document.getElementById('addUser')) document.getElementById('addUser').value='';
             } else {               
                 dispatch(toggleError('User Not Found'))
             }  

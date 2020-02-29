@@ -255,7 +255,7 @@ let Form = ({
             default: console.log();
         }
         //reset values
-        if(document.getElementById('addUser')) document.getElementById('addUser').value='';
+        // if(document.getElementById('addUser')) document.getElementById('addUser').value='';
         // document.querySelectorAll('input').forEach(input => {if(input.id !== 'search') input.value = ''});
     }
     //transform button text to form legend text
