@@ -28,11 +28,11 @@ export default function postItinerary(location,departureDate,returnDate,userID) 
             // console.log(1)
             return dispatch(toggleError('Invalid Dates'));
         //checks months
-        } else if(parsedDepartureDate[1] > parsedReturnDate[1] || (parsedDepartureDate[0] === today[0] && parsedDepartureDate[1] < today[1])) {
+        } else if((parsedDepartureDate[0] === parsedReturnDate[0] && parsedDepartureDate[1] > parsedReturnDate[1]) || (parsedDepartureDate[0] === today[0] && parsedDepartureDate[1] < today[1])) {
             // console.log(2)
             return dispatch(toggleError('Invalid Dates'));
         //checks days
-        } else if (parsedDepartureDate[2] > parsedReturnDate[2] || (parsedDepartureDate[0] === today[0] && parsedDepartureDate[1] === today[1] && parsedDepartureDate[2] < today[2])) {
+        } else if ((parsedDepartureDate[0] === parsedReturnDate[0] && parsedDepartureDate[1] === parsedReturnDate[1] && parsedDepartureDate[2] > parsedReturnDate[2]) || (parsedDepartureDate[0] === today[0] && parsedDepartureDate[1] === today[1] && parsedDepartureDate[2] < today[2])) {
             // console.log(3)
             return dispatch(toggleError('Invalid Dates'));
         }
@@ -58,7 +58,39 @@ export default function postItinerary(location,departureDate,returnDate,userID) 
             dates.push(day[0] + '.' + day[1] + '.' + day[2]);
             nextDate.setDate(nextDate.getDate() + 1);
         }
-        //error in Date class does not skip 2/30
+        //error in Date class adding extra day to each month
+        dates.forEach((date,index) => {
+            const sliced = date.slice(0,5);
+            const errors = ['01.32','02.30','03.32','04.31','05.32','06.31','07.32','08.32','09.31','10.32','11.31','12.32'];
+            if(errors.indexOf(sliced) !== -1 ) {
+                switch (sliced) {
+                    case errors[0]: dates[index] = '02.01' + dates[index].slice(5);
+                        break;
+                    case errors[1]: dates[index] = '03.01' + dates[index].slice(5);
+                        break;
+                    case errors[2]: dates[index] = '04.01' + dates[index].slice(5);
+                        break;
+                    case errors[3]: dates[index] = '05.01' + dates[index].slice(5);
+                        break;
+                    case errors[4]: dates[index] = '06.01' + dates[index].slice(5);
+                        break;
+                    case errors[5]: dates[index] = '07.01' + dates[index].slice(5);
+                        break;
+                    case errors[6]: dates[index] = '08.01' + dates[index].slice(5);
+                        break;
+                    case errors[7]: dates[index] = '09.01' + dates[index].slice(5);
+                        break;
+                    case errors[8]: dates[index] = '10.01' + dates[index].slice(5);
+                        break;
+                    case errors[9]: dates[index] = '11.01' + dates[index].slice(5);
+                        break;
+                    case errors[10]: dates[index] = '12.01' + dates[index].slice(5);
+                        break;
+                    case errors[11]: dates[index] = '01.01' + dates[index].slice(5);
+                        break;
+                }       
+            }
+        });
         if(dates.find(date => date.slice(0,5) === ('02.30'))) {
             let errorIndex = dates.indexOf(dates.find(date => date.slice(0,5) === ('02.30')));
             dates[errorIndex] = '03.01' + dates[errorIndex].slice(5);

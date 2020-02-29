@@ -244,7 +244,7 @@ let Form = ({
                 break;
             case 'new': postItinerary(location.value,departureDate.value,returnDate.value,userID);
                 break;
-            case 'update': putItinerary(location.value,departureDate.value,returnDate.value,itinerary.id,itinerary.index, itinerary.shared);
+            case 'update': putItinerary(location.value,departureDate.value,returnDate.value,itinerary.id,itinerary.index, itinerary.shared, departureDate.defaultValue);
                 break;
             case 'remove': deleteItinerary(itinerary, userID);
                 break;
@@ -255,7 +255,8 @@ let Form = ({
             default: console.log();
         }
         //reset values
-        document.querySelectorAll('input').forEach(input => input.value = '');
+        if(document.getElementById('addUser')) document.getElementById('addUser').value='';
+        // document.querySelectorAll('input').forEach(input => {if(input.id !== 'search') input.value = ''});
     }
     //transform button text to form legend text
     let legend = form;
@@ -366,7 +367,7 @@ let Form = ({
                                 </InputContainer>
                                 <InputContainer>
                                     <label>Add User:</label>
-                                    <input type="text" ref={node => addUser = node} autoFocus/>
+                                    <input type="text" ref={node => addUser = node} autoFocus id='addUser'/>
                                 </InputContainer>
                             </>
                         }

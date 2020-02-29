@@ -125,7 +125,7 @@ let Search = ({setFilter, page, tables, toggleTable, itinerary, table}) => {
   return (
       <Wrapper page={page} onSubmit={submit}>
         {page === 'show' && <Arrow radius='8px 0 0 8px' image={leftIcon} onClick={ ()=> {toggleTable(left); update(left)}}/>}
-        {page === 'index' && <input type='text' ref={node => query = node}/>}
+        {page === 'index' && <input type='text' ref={node => query = node} id='search'/>}
         {page === 'show' && itinerary &&       
           <select  onChange={()=>{toggleTable(query.value); update(query.value)}} ref={node => query = node} autoFocus >
               {itinerary.dates.map(date => {
