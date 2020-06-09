@@ -19,7 +19,7 @@ const Wrapper = styled.form`
 
   & input, select {
     font-size: 16px;
-    padding: 16px;
+    padding: 0 16px;
     width: calc(100% - 80px);
     font-family: Verdana;
     border-radius: 8px 0 0 8px;
